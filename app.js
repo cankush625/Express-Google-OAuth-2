@@ -29,7 +29,7 @@ app.use(
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
-        store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+        store: MongoStore.create({ mongoUrl: process.env.MONGO_URI, collectionName: process.env.SESSION_COLLECTION_NAME }),
     }),
 );
 
@@ -40,6 +40,7 @@ app.use(passport.session());
 // Routes
 app.use("/auth", require("./routes/auth"));
 app.use("/home", require("./routes/home"));
+app.use("/bye", require("./routes/bye"));
 
 const PORT = process.env.PORT || 5000;
 
